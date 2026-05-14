@@ -1,57 +1,103 @@
 import { motion } from "framer-motion";
-import { Rocket, Building2, Landmark, Globe2 } from "lucide-react";
+import { Github, ExternalLink, MessageCircle } from "lucide-react";
 import { SlideShell } from "../SlideShell";
 
-const milestones = [
-  { i: Rocket, t: "Month 1", h: "Hackathon MVP", d: "Triple Threat engine v1, Squad sandbox integration." },
-  { i: Building2, t: "Month 3", h: "Pilot with fintech", d: "First production deployment, ₦5B txn/month screened." },
-  { i: Landmark, t: "Month 6", h: "First bank partnership", d: "Tier-1 bank live, recovery share contract signed." },
-  { i: Globe2, t: "Month 12", h: "Expand nationally", d: "5+ banks · ₦240M ARR · CBN sandbox graduation." },
-];
+const REPO = "https://github.com/void-synth/squad";
+const LIVE = "https://titan-squad.vercel.app/";
 
 export function Slide10Roadmap() {
   return (
-    <SlideShell
-      eyebrow="Roadmap"
-      title="From hackathon to ₦240M ARR in 12 months."
-    >
-      <div className="relative">
-        <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-primary/40 via-primary to-transparent md:-translate-x-1/2" />
-        <div className="space-y-6">
-          {milestones.map((m, i) => (
-            <motion.div
-              key={m.t}
-              initial={{ opacity: 0, x: i % 2 ? 20 : -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.1 + i * 0.15 }}
-              className={`relative grid md:grid-cols-2 gap-4 items-center ${
-                i % 2 ? "md:[&>*:first-child]:order-2" : ""
-              }`}
-            >
-              <div className={`pl-12 md:pl-0 ${i % 2 ? "md:text-left md:pl-12" : "md:text-right md:pr-12"}`}>
-                <div className="text-[10px] font-mono uppercase tracking-widest text-neon">{m.t}</div>
-                <div className="text-xl font-semibold mt-1">{m.h}</div>
-                <div className="text-sm text-muted-foreground mt-1 max-w-sm md:inline-block">{m.d}</div>
-              </div>
-
-              <div className="absolute left-4 md:left-1/2 -translate-x-1/2 flex h-9 w-9 items-center justify-center rounded-full bg-background border-2 border-primary neon-border">
-                <m.i className="h-4 w-4 text-neon" />
-              </div>
-
-              <div />
-            </motion.div>
-          ))}
-        </div>
-
+    <SlideShell eyebrow="Team & ask" title="Team Synth">
+      <div className="grid lg:grid-cols-[1fr_1.1fr] gap-8 items-start">
         <motion.div
-          initial={{ opacity: 0, y: 12 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.9 }}
-          className="mt-10 glass-strong rounded-2xl p-6 text-center neon-border"
+          initial={{ opacity: 0, x: -12 }}
+          animate={{ opacity: 1, x: 0 }}
+          className="glass-strong rounded-2xl p-8 text-center lg:text-left"
         >
-          <div className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground">Year-1 Target</div>
-          <div className="mt-1 text-4xl font-bold text-gradient">₦240M ARR</div>
+          <div className="text-4xl font-bold text-gradient mb-2">Team Synth</div>
+          <p className="text-sm text-muted-foreground leading-relaxed">
+            Hackathon squad shipping Titan (Squad Sentinel) — fraud monitoring demo with realistic
+            ingest, composite scoring, and a live operator UI you can open in the judging room.
+          </p>
+          <p className="mt-4 text-xs font-mono text-muted-foreground">
+            Add member names / roles in your speaker notes if you want them on-screen later.
+          </p>
         </motion.div>
+
+        <div className="space-y-4">
+          <motion.div
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.1 }}
+            className="glass-strong rounded-2xl p-6"
+          >
+            <div className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground mb-3">
+              What we want
+            </div>
+            <ul className="space-y-3 text-sm text-muted-foreground">
+              <li className="flex gap-2">
+                <MessageCircle className="h-4 w-4 text-neon shrink-0 mt-0.5" />
+                <span>
+                  <span className="text-foreground font-medium">Feedback</span> on pipeline design
+                  and hackathon story — sharp questions welcome.
+                </span>
+              </li>
+              <li className="flex gap-2">
+                <span className="text-neon shrink-0">▸</span>
+                <span>
+                  <span className="text-foreground font-medium">Category fit</span> — Squad /
+                  fintech / security tracks where a verifiable webhook-to-UI demo scores.
+                </span>
+              </li>
+              <li className="flex gap-2">
+                <span className="text-neon shrink-0">▸</span>
+                <span>
+                  <span className="text-foreground font-medium">Intros</span> to teams who live in
+                  alert queues — no fabricated pilots or logos.
+                </span>
+              </li>
+            </ul>
+          </motion.div>
+
+          <div className="grid sm:grid-cols-2 gap-3">
+            <motion.a
+              href={REPO}
+              target="_blank"
+              rel="noopener noreferrer"
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2 }}
+              className="glass rounded-xl p-5 flex items-center gap-3 border border-border hover:border-primary/50 hover:bg-primary/5 transition group"
+            >
+              <Github className="h-6 w-6 text-neon" />
+              <div>
+                <div className="text-[10px] font-mono uppercase text-muted-foreground">Source</div>
+                <div className="text-sm font-semibold group-hover:text-neon transition">
+                  void-synth/squad
+                </div>
+              </div>
+            </motion.a>
+            <motion.a
+              href={LIVE}
+              target="_blank"
+              rel="noopener noreferrer"
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.28 }}
+              className="glass rounded-xl p-5 flex items-center gap-3 border border-border hover:border-primary/50 hover:bg-primary/5 transition group"
+            >
+              <ExternalLink className="h-6 w-6 text-neon" />
+              <div>
+                <div className="text-[10px] font-mono uppercase text-muted-foreground">
+                  Live product
+                </div>
+                <div className="text-sm font-semibold group-hover:text-neon transition">
+                  titan-squad.vercel.app
+                </div>
+              </div>
+            </motion.a>
+          </div>
+        </div>
       </div>
     </SlideShell>
   );

@@ -1,87 +1,122 @@
-import { motion } from "framer-motion";
-import { Check, Sparkles } from "lucide-react";
+import { useEffect, useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Terminal, Radio, ShieldAlert, CheckCircle } from "lucide-react";
 import { SlideShell } from "../SlideShell";
 
-const tiers = [
-  {
-    name: "Enterprise SaaS",
-    price: "₦50M",
-    cycle: "/year per bank",
-    perks: ["Unlimited transactions", "Dedicated CSM", "On-prem deployment", "SLA 99.99%"],
-  },
-  {
-    name: "Per Transaction",
-    price: "₦5",
-    cycle: "/screened transfer",
-    perks: ["Pay-as-you-go", "API + dashboard", "No volume commit", "Ideal for fintechs"],
-  },
-  {
-    name: "Recovery Revenue Share",
-    price: "5%",
-    cycle: "of recovered funds",
-    perks: ["Zero upfront cost", "Aligned incentives", "Scales with success", "Bank's favorite"],
-    highlight: true,
-  },
-];
+type Step = 0 | 1 | 2 | 3 | 4;
 
 export function Slide07Business() {
+  const [step, setStep] = useState<Step>(0);
+
+  useEffect(() => {
+    const t1 = setTimeout(() => setStep(1), 500);
+    const t2 = setTimeout(() => setStep(2), 1800);
+    const t3 = setTimeout(() => setStep(3), 3200);
+    const t4 = setTimeout(() => setStep(4), 4800);
+    return () => [t1, t2, t3, t4].forEach(clearTimeout);
+  }, []);
+
+  const lines = [
+    step >= 1 && "> python simulate.py -n 50 -c 8 --fraud-rate 0.1",
+    step >= 2 && "> POST /api/v1/webhook/squad … verify ✓ enqueue ✓",
+    step >= 3 && "> worker: score → FraudAlert created (held)",
+    step >= 4 && "> analyst: POST …/release → Socket.IO stats refresh ✓",
+  ].filter(Boolean) as string[];
+
   return (
-    <SlideShell
-      eyebrow="Business Model"
-      title="Three revenue streams. One unfair flywheel."
-      subtitle="Recovery share is the wedge — banks pay nothing unless we save them money."
-    >
-      <div className="grid md:grid-cols-3 gap-4">
-        {tiers.map((t, i) => (
-          <motion.div
-            key={t.name}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1 + i * 0.12 }}
-            className={`relative rounded-2xl p-6 ${
-              t.highlight ? "glass-strong neon-border" : "glass-strong"
-            }`}
-          >
-            {t.highlight && (
-              <div className="absolute -top-3 left-6 inline-flex items-center gap-1 rounded-full bg-gradient-to-r from-primary to-neon px-3 py-1 text-[10px] font-bold uppercase tracking-widest text-primary-foreground">
-                <Sparkles className="h-3 w-3" /> Most attractive
+    <SlideShell eyebrow="Live demo" title="30–45 seconds: prove the path.">
+      <div className="grid lg:grid-cols-[1.1fr_1fr] gap-6 items-start">
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="glass-strong rounded-2xl p-5 font-mono text-xs min-h-[240px]"
+        >
+          <div className="flex items-center gap-2 text-muted-foreground mb-3">
+            <Terminal className="h-4 w-4" />
+            <span>TERMINAL · backend/</span>
+          </div>
+          <div className="space-y-2 text-neon-green/90">
+            {lines.map((line, i) => (
+              <motion.div
+                key={line}
+                initial={{ opacity: 0, x: -8 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: i * 0.05 }}
+              >
+                {line}
+              </motion.div>
+            ))}
+            <span className="inline-block w-2 h-4 bg-neon-green/80 animate-pulse align-middle ml-0.5" />
+          </div>
+        </motion.div>
+
+        <div className="space-y-3">
+          {[
+            {
+              s: 1,
+              icon: Radio,
+              t: "Load",
+              d: "Simulator fires signed webhooks in parallel — same production-like path.",
+            },
+            {
+              s: 2,
+              icon: Radio,
+              t: "Feed",
+              d: "Dashboard live feed shows new rows; filters match analyst workflow.",
+            },
+            {
+              s: 3,
+              icon: ShieldAlert,
+              t: "Alert",
+              d: "High severity creates FraudAlert; case appears in Alerts inbox.",
+            },
+            {
+              s: 4,
+              icon: CheckCircle,
+              t: "Resolve",
+              d: "Release or escalate via REST; stats refresh over Socket.IO.",
+            },
+          ].map((row) => (
+            <motion.div
+              key={row.t}
+              initial={{ opacity: 0, x: 12 }}
+              animate={{ opacity: step >= row.s ? 1 : 0.35, x: 0 }}
+              className={`flex gap-3 rounded-xl border p-4 transition ${
+                step >= row.s ? "border-primary/50 bg-primary/10" : "border-border/60 bg-muted/20"
+              }`}
+            >
+              <row.icon
+                className={`h-5 w-5 shrink-0 mt-0.5 ${step >= row.s ? "text-neon" : "text-muted-foreground"}`}
+              />
+              <div>
+                <div className="text-sm font-semibold">{row.t}</div>
+                <div className="text-xs text-muted-foreground mt-0.5">{row.d}</div>
               </div>
-            )}
-            <div className="text-xs uppercase tracking-widest text-muted-foreground">{t.name}</div>
-            <div className="mt-3 flex items-baseline gap-2">
-              <span className={`text-5xl font-bold font-mono ${t.highlight ? "text-gradient" : ""}`}>{t.price}</span>
-              <span className="text-xs text-muted-foreground">{t.cycle}</span>
-            </div>
-            <div className="mt-5 h-px bg-white/10" />
-            <ul className="mt-4 space-y-2.5 text-sm">
-              {t.perks.map((p) => (
-                <li key={p} className="flex items-center gap-2">
-                  <Check className="h-3.5 w-3.5 text-neon" />
-                  <span className="text-foreground/90">{p}</span>
-                </li>
-              ))}
-            </ul>
-          </motion.div>
-        ))}
+            </motion.div>
+          ))}
+        </div>
       </div>
 
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.6 }}
-        className="mt-8 grid sm:grid-cols-3 gap-3 text-center"
-      >
-        {[
-          { l: "Year 1 ARR target", v: "₦240M" },
-          { l: "Avg contract value", v: "₦70M" },
-          { l: "Gross margin", v: "84%" },
-        ].map((s) => (
-          <div key={s.l} className="glass rounded-xl p-3">
-            <div className="text-xl font-mono font-bold text-neon">{s.v}</div>
-            <div className="text-[10px] uppercase tracking-widest text-muted-foreground mt-0.5">{s.l}</div>
-          </div>
-        ))}
-      </motion.div>
+      <AnimatePresence>
+        {step >= 4 && (
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            className="mt-6 text-center text-xs text-muted-foreground font-mono"
+          >
+            Open the deployed UI at{" "}
+            <a
+              className="text-neon hover:underline"
+              href="https://titan-squad.vercel.app/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              titan-squad.vercel.app
+            </a>{" "}
+            — demo login is intentional scope; production would use IdP + RBAC.
+          </motion.p>
+        )}
+      </AnimatePresence>
     </SlideShell>
   );
 }

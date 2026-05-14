@@ -1,36 +1,53 @@
 import { motion } from "framer-motion";
+import { KeyRound, FileDown, FlaskConical, KanbanSquare } from "lucide-react";
 import { SlideShell } from "../SlideShell";
 
-const stack = [
-  { layer: "Frontend", tech: "Next.js 15", desc: "Server-rendered analyst console" },
-  { layer: "Backend", tech: "Python · FastAPI", desc: "Async risk-scoring API" },
-  { layer: "AI/ML", tech: "TensorFlow · Scikit-learn", desc: "Triple Threat models" },
-  { layer: "Fraud Graph", tech: "Neo4j", desc: "Identity & beneficiary network" },
-  { layer: "Payments", tech: "Squad API", desc: "Native NIP enforcement" },
-  { layer: "Cloud", tech: "AWS", desc: "Multi-AZ Lagos region" },
-  { layer: "Database", tech: "PostgreSQL", desc: "Audit + analytics warehouse" },
+const items = [
+  {
+    icon: KeyRound,
+    title: "RBAC + real IdP",
+    desc: "Replace demo login with proper auth, roles for analyst vs admin, and session hardening.",
+  },
+  {
+    icon: FileDown,
+    title: "Audit export",
+    desc: "Downloadable case trails — timestamps, actions, and payload hashes for compliance conversations.",
+  },
+  {
+    icon: FlaskConical,
+    title: "Model evaluation loop",
+    desc: "Replay labeled webhooks, track precision/recall on holds, version scorer configs — only where the team invests next.",
+  },
+  {
+    icon: KanbanSquare,
+    title: "Richer case management",
+    desc: "Assignments, SLAs, internal notes, and escalation paths to match enterprise SOC workflows.",
+  },
 ];
 
 export function Slide09Stack() {
   return (
     <SlideShell
-      eyebrow="Tech Stack"
-      title="Built for sub-100ms decisions at NIP scale."
+      eyebrow="Roadmap"
+      title="If we had eight more weeks…"
+      subtitle="Everything here extends the same pipeline — no rewrite of the core webhook → worker → socket story."
     >
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-3">
-        {stack.map((s, i) => (
+      <div className="grid sm:grid-cols-2 gap-4">
+        {items.map((it, i) => (
           <motion.div
-            key={s.layer}
+            key={it.title}
             initial={{ opacity: 0, y: 14 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.05 + i * 0.07 }}
-            className="glass-strong rounded-xl p-4 group hover:bg-white/8 transition relative overflow-hidden"
+            transition={{ delay: 0.08 + i * 0.08 }}
+            className="glass-strong rounded-2xl p-6 flex gap-4"
           >
-            <div className="absolute right-3 top-3 text-[10px] font-mono text-muted-foreground">/0{i + 1}</div>
-            <div className="text-[10px] font-mono uppercase tracking-widest text-neon">{s.layer}</div>
-            <div className="mt-2 text-base font-semibold">{s.tech}</div>
-            <div className="mt-1 text-xs text-muted-foreground">{s.desc}</div>
-            <div className="mt-3 h-0.5 w-8 bg-gradient-to-r from-primary to-neon group-hover:w-full transition-all duration-500" />
+            <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-primary/15 text-neon">
+              <it.icon className="h-5 w-5" />
+            </div>
+            <div>
+              <h3 className="text-base font-semibold">{it.title}</h3>
+              <p className="mt-1 text-sm text-muted-foreground leading-relaxed">{it.desc}</p>
+            </div>
           </motion.div>
         ))}
       </div>
@@ -38,14 +55,11 @@ export function Slide09Stack() {
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 0.7 }}
-        className="mt-8 glass rounded-xl p-4 font-mono text-xs text-muted-foreground flex flex-wrap items-center gap-x-6 gap-y-2 justify-between"
+        transition={{ delay: 0.5 }}
+        className="mt-8 glass rounded-xl p-4 text-xs text-muted-foreground text-center font-mono"
       >
-        <span>p50 latency: <span className="text-neon-green">42ms</span></span>
-        <span>p99 latency: <span className="text-neon-green">98ms</span></span>
-        <span>Throughput: <span className="text-neon">12K txn/sec</span></span>
-        <span>Uptime SLA: <span className="text-neon">99.99%</span></span>
-        <span>Compliance: <span className="text-neon">PCI-DSS · NDPR · CBN</span></span>
+        Current stack (reference): FastAPI · PostgreSQL · Redis · python-socketio · Vite · React ·
+        HeroUI · Chart.js — see repo README.
       </motion.div>
     </SlideShell>
   );

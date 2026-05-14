@@ -2,21 +2,22 @@ import { motion } from "framer-motion";
 import { Check, X } from "lucide-react";
 import { SlideShell } from "../SlideShell";
 
-const cols = ["Squad-Sentinel", "Traditional Banks", "FICO", "Manual Teams"];
+const cols = ["Titan", "Slide-ware “fraud AI”", "Logs only"];
 const rows = [
-  { f: "Real-time recovery", v: [true, false, false, false] },
-  { f: "Nigeria-focused", v: [true, true, false, true] },
-  { f: "API enforcement", v: [true, false, true, false] },
-  { f: "Social fraud detection", v: [true, false, false, false] },
-  { f: "Graph intelligence", v: [true, false, true, false] },
+  { f: "Signed webhook ingest", v: [true, false, false] },
+  { f: "Queue-backed worker", v: [true, false, true] },
+  { f: "Live Socket.IO UI", v: [true, false, false] },
+  { f: "Money-hop + case actions", v: [true, false, false] },
+  { f: "Load-demoable (simulate.py)", v: [true, false, false] },
+  { f: "Honest Squad / payout claims", v: [true, false, true] },
 ];
 
 export function Slide08Compete() {
   return (
     <SlideShell
-      eyebrow="Competitive Advantage"
-      title="No one else does all five."
-      subtitle="Legacy fraud vendors built for Visa rails. Manual teams don't scale. Squad-Sentinel was built native to Nigerian payments."
+      eyebrow="Advantage"
+      title="Differentiation judges can verify in five minutes."
+      subtitle="Operator-first, signed ingest, queue-backed processing, and a UI that updates when analysts act — not a static architecture PNG with a hidden script."
     >
       <motion.div
         initial={{ opacity: 0, y: 16 }}
@@ -24,7 +25,7 @@ export function Slide08Compete() {
         transition={{ duration: 0.6 }}
         className="glass-strong rounded-2xl overflow-hidden"
       >
-        <div className="grid grid-cols-5 text-xs font-mono uppercase tracking-widest text-muted-foreground border-b border-white/10">
+        <div className="grid grid-cols-4 text-xs font-mono uppercase tracking-widest text-muted-foreground border-b border-border">
           <div className="p-4">Capability</div>
           {cols.map((c, i) => (
             <div
@@ -40,8 +41,8 @@ export function Slide08Compete() {
             key={r.f}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ delay: 0.2 + ri * 0.08 }}
-            className="grid grid-cols-5 items-center text-sm border-b border-white/5 last:border-b-0"
+            transition={{ delay: 0.15 + ri * 0.06 }}
+            className="grid grid-cols-4 items-center text-sm border-b border-border/70 last:border-b-0"
           >
             <div className="p-4 font-medium">{r.f}</div>
             {r.v.map((val, ci) => (
@@ -50,7 +51,11 @@ export function Slide08Compete() {
                 className={`p-4 flex justify-center ${ci === 0 ? "bg-primary/10 border-x border-primary/30" : ""}`}
               >
                 {val ? (
-                  <span className={`flex h-7 w-7 items-center justify-center rounded-full ${ci === 0 ? "bg-neon text-primary-foreground" : "bg-white/10"}`}>
+                  <span
+                    className={`flex h-7 w-7 items-center justify-center rounded-full ${
+                      ci === 0 ? "bg-neon text-primary-foreground" : "bg-muted"
+                    }`}
+                  >
                     <Check className="h-4 w-4" />
                   </span>
                 ) : (
@@ -61,10 +66,6 @@ export function Slide08Compete() {
           </motion.div>
         ))}
       </motion.div>
-
-      <div className="mt-6 text-center text-xs text-muted-foreground">
-        Squad-Sentinel is the only platform that closes the loop — from detection to <span className="text-neon">automated recovery</span>.
-      </div>
     </SlideShell>
   );
 }

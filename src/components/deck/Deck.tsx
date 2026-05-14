@@ -1,6 +1,6 @@
 import { useEffect, useState, useCallback } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { ChevronLeft, ChevronRight, Maximize2, Shield } from "lucide-react";
+import { ChevronLeft, ChevronRight, Maximize2 } from "lucide-react";
 import { slides } from "@/components/deck/slides";
 
 export function Deck() {
@@ -35,15 +35,7 @@ export function Deck() {
 
       {/* Top bar */}
       <header className="absolute top-0 left-0 right-0 z-40 flex items-center justify-between px-4 sm:px-8 py-4">
-        <div className="flex items-center gap-2">
-          <div className="relative flex h-8 w-8 items-center justify-center rounded-md glass-strong neon-border">
-            <Shield className="h-4 w-4 text-neon" />
-          </div>
-          <div className="hidden sm:block">
-            <div className="text-sm font-semibold tracking-tight">Squad-Sentinel AI</div>
-            <div className="text-[10px] uppercase tracking-[0.25em] text-muted-foreground">Investor Deck · 2026</div>
-          </div>
-        </div>
+        <div />
         <div className="flex items-center gap-3">
           <div className="hidden md:flex items-center gap-2 text-xs text-muted-foreground font-mono">
             <span>{String(index + 1).padStart(2, "0")}</span>
@@ -53,7 +45,7 @@ export function Deck() {
           </div>
           <button
             onClick={() => document.documentElement.requestFullscreen?.()}
-            className="rounded-md glass p-2 hover:bg-white/10 transition"
+            className="rounded-md glass p-2 hover:bg-primary/10 transition"
             aria-label="Fullscreen"
           >
             <Maximize2 className="h-3.5 w-3.5" />
@@ -85,7 +77,7 @@ export function Deck() {
         <button
           onClick={() => go(index - 1)}
           disabled={index === 0}
-          className="rounded-full glass-strong p-3 hover:bg-white/10 disabled:opacity-30 transition"
+          className="rounded-full glass-strong p-3 hover:bg-primary/10 disabled:opacity-30 transition"
           aria-label="Previous"
         >
           <ChevronLeft className="h-4 w-4" />
@@ -97,7 +89,7 @@ export function Deck() {
             <button
               key={i}
               onClick={() => go(i)}
-              className="group relative flex-1 h-1 rounded-full bg-white/8 overflow-hidden"
+              className="group relative flex-1 h-1 rounded-full bg-muted/70 overflow-hidden"
               aria-label={s.title}
             >
               <motion.span
@@ -106,7 +98,7 @@ export function Deck() {
                 animate={{ width: i < index ? "100%" : i === index ? "100%" : "0%" }}
                 transition={{ duration: 0.6 }}
               />
-              <span className="pointer-events-none absolute -top-7 left-1/2 -translate-x-1/2 whitespace-nowrap rounded bg-black/80 px-2 py-0.5 text-[10px] opacity-0 group-hover:opacity-100 transition">
+              <span className="pointer-events-none absolute -top-7 left-1/2 -translate-x-1/2 whitespace-nowrap rounded bg-foreground px-2 py-0.5 text-[10px] text-background opacity-0 group-hover:opacity-100 transition">
                 {s.title}
               </span>
             </button>
@@ -116,7 +108,7 @@ export function Deck() {
         <button
           onClick={() => go(index + 1)}
           disabled={index === slides.length - 1}
-          className="rounded-full glass-strong p-3 hover:bg-white/10 disabled:opacity-30 transition neon-border"
+          className="rounded-full glass-strong p-3 hover:bg-primary/10 disabled:opacity-30 transition neon-border"
           aria-label="Next"
         >
           <ChevronRight className="h-4 w-4" />

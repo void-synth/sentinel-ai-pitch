@@ -1,31 +1,31 @@
 import { motion } from "framer-motion";
-import { Banknote, Users, AlertOctagon } from "lucide-react";
+import { Gauge, EyeOff, GitBranch } from "lucide-react";
 import { SlideShell, Stat } from "../SlideShell";
 
 const pains = [
   {
-    icon: Banknote,
-    title: "Payout Liability",
-    desc: "Banks refund millions lost to fraud, eating directly into operating margins.",
+    icon: Gauge,
+    title: "Volume beats humans",
+    desc: "Instant rails push transactions faster than analysts can tab through logs — without a live feed and queue, you only see fraud after the story is over.",
   },
   {
-    icon: Users,
-    title: "Manual Fraud Teams",
-    desc: "Thousands of analyst hours spent flagging fraud one transaction at a time.",
+    icon: EyeOff,
+    title: "Black-box “AI” fails Q&A",
+    desc: "Judges (and banks) ask: where did the score come from? Slides without a visible path from event → model inputs → action lose trust in minutes.",
   },
   {
-    icon: AlertOctagon,
-    title: "False Positives",
-    desc: "Legitimate transactions blocked, frustrating SMBs and high-value customers.",
+    icon: GitBranch,
+    title: "No money path, no decision",
+    desc: "Velocity alone is not enough. Operators need beneficiary context and a money-hop view to hold, release, or escalate with confidence.",
   },
 ];
 
 export function Slide02Problem() {
   return (
     <SlideShell
-      eyebrow="The Problem"
-      title="Fraud is bleeding Nigerian banks dry."
-      subtitle="Three compounding failures across every tier-1 bank in Nigeria — and they all show up on the P&L."
+      eyebrow="The problem"
+      title="Fraud ops needs a believable pipeline — not a buzzword."
+      subtitle="We built Titan for hackathon clarity: the same path from signed webhook to database to worker to sockets to UI — stressable with a simulator, honest about what moves on Squad vs what stays in our case model."
     >
       <div className="grid md:grid-cols-3 gap-4 mb-10">
         {pains.map((p, i) => (
@@ -37,7 +37,7 @@ export function Slide02Problem() {
             className="glass-strong rounded-2xl p-6 relative overflow-hidden"
           >
             <div className="flex items-center justify-between mb-4">
-              <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-destructive/15 text-[oklch(0.75_0.22_25)]">
+              <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/15 text-neon">
                 <p.icon className="h-5 w-5" />
               </div>
               <span className="text-[10px] font-mono text-muted-foreground">0{i + 1}</span>
@@ -49,9 +49,9 @@ export function Slide02Problem() {
       </div>
 
       <div className="grid md:grid-cols-3 gap-3">
-        <Stat value="₦2.3B" label="Annual refund losses" accent="danger" delay={0.5} />
-        <Stat value="₦800M" label="Operational fraud-team cost" accent="danger" delay={0.6} />
-        <Stat value="₦1.5B" label="Customer churn risk" accent="danger" delay={0.7} />
+        <Stat value="Signed" label="Webhook verification (HMAC)" delay={0.5} />
+        <Stat value="Queued" label="Redis → background worker" delay={0.6} />
+        <Stat value="Live" label="Socket.IO to all clients" accent="green" delay={0.7} />
       </div>
     </SlideShell>
   );

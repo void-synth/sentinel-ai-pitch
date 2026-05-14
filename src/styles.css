@@ -38,29 +38,29 @@
 
 :root {
   --radius: 0.75rem;
-  --background: oklch(0.13 0.025 260);
-  --foreground: oklch(0.97 0.01 250);
-  --card: oklch(0.18 0.03 260);
-  --card-foreground: oklch(0.97 0.01 250);
-  --popover: oklch(0.18 0.03 260);
-  --popover-foreground: oklch(0.97 0.01 250);
-  --primary: oklch(0.72 0.18 240);
-  --primary-foreground: oklch(0.1 0.02 260);
-  --secondary: oklch(0.25 0.04 260);
-  --secondary-foreground: oklch(0.97 0.01 250);
-  --muted: oklch(0.22 0.03 260);
-  --muted-foreground: oklch(0.65 0.03 250);
-  --accent: oklch(0.3 0.05 260);
-  --accent-foreground: oklch(0.97 0.01 250);
+  --background: oklch(0.99 0.005 255);
+  --foreground: oklch(0.23 0.02 258);
+  --card: oklch(0.985 0.008 255);
+  --card-foreground: oklch(0.23 0.02 258);
+  --popover: oklch(0.985 0.008 255);
+  --popover-foreground: oklch(0.23 0.02 258);
+  --primary: oklch(0.58 0.19 250);
+  --primary-foreground: oklch(0.98 0.003 255);
+  --secondary: oklch(0.94 0.01 255);
+  --secondary-foreground: oklch(0.3 0.02 258);
+  --muted: oklch(0.95 0.009 255);
+  --muted-foreground: oklch(0.52 0.02 255);
+  --accent: oklch(0.93 0.012 255);
+  --accent-foreground: oklch(0.28 0.02 258);
   --destructive: oklch(0.65 0.25 25);
-  --destructive-foreground: oklch(0.97 0.01 250);
-  --border: oklch(0.28 0.03 260 / 60%);
-  --input: oklch(0.28 0.03 260);
+  --destructive-foreground: oklch(0.98 0.003 255);
+  --border: oklch(0.84 0.015 258 / 70%);
+  --input: oklch(0.9 0.012 258);
   --ring: oklch(0.72 0.18 240);
-  --neon: oklch(0.78 0.2 230);
+  --neon: oklch(0.62 0.2 238);
   --neon-red: oklch(0.7 0.25 20);
-  --neon-green: oklch(0.78 0.2 155);
-  --grid-color: oklch(0.3 0.04 260 / 35%);
+  --neon-green: oklch(0.63 0.2 155);
+  --grid-color: oklch(0.76 0.02 255 / 45%);
 }
 
 .dark {
@@ -71,7 +71,7 @@
   * { border-color: var(--color-border); }
   html, body, #root { height: 100%; }
   body {
-    background: radial-gradient(ellipse at top, oklch(0.18 0.05 250) 0%, oklch(0.08 0.02 260) 60%);
+    background: radial-gradient(ellipse at top, oklch(0.98 0.018 245) 0%, oklch(0.99 0.004 255) 58%);
     color: var(--color-foreground);
     font-family: var(--font-display);
     overflow: hidden;
@@ -82,24 +82,24 @@
 
 @layer utilities {
   .glass {
-    background: linear-gradient(140deg, oklch(1 0 0 / 6%), oklch(1 0 0 / 2%));
+    background: linear-gradient(140deg, oklch(0.99 0.006 255 / 90%), oklch(0.97 0.012 255 / 85%));
     backdrop-filter: blur(20px);
-    border: 1px solid oklch(1 0 0 / 10%);
+    border: 1px solid oklch(0.82 0.015 255 / 65%);
   }
   .glass-strong {
-    background: linear-gradient(140deg, oklch(1 0 0 / 10%), oklch(1 0 0 / 4%));
+    background: linear-gradient(140deg, oklch(0.99 0.006 255 / 95%), oklch(0.95 0.014 255 / 90%));
     backdrop-filter: blur(24px);
-    border: 1px solid oklch(1 0 0 / 14%);
+    border: 1px solid oklch(0.8 0.018 255 / 70%);
   }
   .neon-text {
     color: var(--neon);
-    text-shadow: 0 0 20px oklch(0.78 0.2 230 / 60%);
+    text-shadow: 0 0 18px oklch(0.62 0.2 238 / 35%);
   }
   .neon-border {
-    box-shadow: 0 0 0 1px oklch(0.78 0.2 230 / 40%), 0 0 30px oklch(0.78 0.2 230 / 25%);
+    box-shadow: 0 0 0 1px oklch(0.62 0.2 238 / 38%), 0 0 24px oklch(0.62 0.2 238 / 18%);
   }
   .danger-glow {
-    box-shadow: 0 0 0 1px oklch(0.7 0.25 20 / 60%), 0 0 40px oklch(0.7 0.25 20 / 35%);
+    box-shadow: 0 0 0 1px oklch(0.7 0.25 20 / 45%), 0 0 30px oklch(0.7 0.25 20 / 18%);
   }
   .grid-bg {
     background-image:
@@ -109,7 +109,7 @@
     mask-image: radial-gradient(ellipse at center, black 30%, transparent 80%);
   }
   .text-gradient {
-    background: linear-gradient(135deg, oklch(0.97 0.01 250), oklch(0.72 0.18 240));
+    background: linear-gradient(135deg, oklch(0.34 0.03 255), oklch(0.58 0.19 250));
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
