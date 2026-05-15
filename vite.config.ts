@@ -5,6 +5,12 @@
 //     error logger plugins, and sandbox detection (port/host/strictPort).
 // You can pass additional config via defineConfig({ vite: { ... } }) if needed.
 import { defineConfig } from "@lovable.dev/vite-tanstack-config";
+import { nitro } from "nitro/vite";
+
+// Vercel runs `vite build` with VERCEL=1. TanStack Start on Vercel expects Nitro output, not
+// Cloudflare Workers (see https://vercel.com/docs/frameworks/full-stack/tanstack-start ).
+// Local / Cloudflare builds keep the default Cloudflare plugin from Lovable's config.
+const forVercel = process.env.VERCEL === "1";
 
 // Configure TanStack Start for Vercel deployment
 export default defineConfig({
@@ -12,4 +18,6 @@ export default defineConfig({
     // Use Vercel adapter instead of Cloudflare
     adapter: "vercel",
   },
+  cloudflare: !forVercel,
+  plugins: forVercel ? [nitro()] : [],
 });
