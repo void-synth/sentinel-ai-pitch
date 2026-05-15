@@ -53,13 +53,56 @@ export function Slide09Stack() {
       </div>
 
       <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.5 }}
-        className="mt-8 glass rounded-xl p-4 text-xs text-muted-foreground text-center font-mono"
+        className="mt-8 glass-strong rounded-2xl p-6"
       >
-        Current stack (reference): FastAPI · PostgreSQL · Redis · python-socketio · Vite · React ·
-        HeroUI · Chart.js — see repo README.
+        <h3 className="text-sm font-semibold mb-4 text-foreground">Tech Stack</h3>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 text-xs font-mono">
+          <div className="rounded-lg bg-primary/10 p-3 text-center">
+            <div className="text-neon font-semibold mb-1">FastAPI</div>
+            <div className="text-muted-foreground">Webhook + ASGI API</div>
+          </div>
+          <div className="rounded-lg bg-primary/10 p-3 text-center">
+            <div className="text-neon font-semibold mb-1">PostgreSQL</div>
+            <div className="text-muted-foreground">Data persistence</div>
+          </div>
+          <div className="rounded-lg bg-primary/10 p-3 text-center">
+            <div className="text-neon font-semibold mb-1">Redis</div>
+            <div className="text-muted-foreground">Queue → worker</div>
+          </div>
+          <div className="rounded-lg bg-primary/10 p-3 text-center">
+            <div className="text-neon font-semibold mb-1">Socket.IO</div>
+            <div className="text-muted-foreground">Live dashboard</div>
+          </div>
+          <div className="rounded-lg bg-primary/10 p-3 text-center">
+            <div className="text-neon font-semibold mb-1">Vite + React</div>
+            <div className="text-muted-foreground">Frontend framework</div>
+          </div>
+          <div className="rounded-lg bg-primary/10 p-3 text-center">
+            <div className="text-neon font-semibold mb-1">HeroUI</div>
+            <div className="text-muted-foreground">UI components</div>
+          </div>
+          <div className="rounded-lg bg-primary/10 p-3 text-center">
+            <div className="text-neon font-semibold mb-1">Chart.js</div>
+            <div className="text-muted-foreground">Data visualization</div>
+          </div>
+          <div className="rounded-lg bg-primary/10 p-3 text-center">
+            <div className="text-neon font-semibold mb-1">python-socketio</div>
+            <div className="text-muted-foreground">Real-time events</div>
+          </div>
+        </div>
+        <div className="mt-4 text-center text-[10px] text-muted-foreground font-mono">
+          <a
+            href="https://github.com/void-synth/squad"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-neon hover:underline"
+          >
+            github.com/void-synth/squad
+          </a>
+        </div>
       </motion.div>
     </SlideShell>
   );

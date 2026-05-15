@@ -24,8 +24,8 @@ export function Slide02Problem() {
   return (
     <SlideShell
       eyebrow="The problem"
-      title="Fraud ops needs a believable pipeline — not a buzzword."
-      subtitle="We built Titan for hackathon clarity: the same path from signed webhook to database to worker to sockets to UI — stressable with a simulator, honest about what moves on Squad vs what stays in our case model."
+      title="Our banks are currently 'Reactive.'"
+      subtitle="They are fighting a 2025 digital war with 2010 manual tools. By the time a human auditor spots these 'Ghost' patterns or realizes that 2,000 accounts are actually just one fraudster, the money is already gone. The current system is slow, it's expensive, and most importantly, it's blind."
     >
       <div className="grid md:grid-cols-3 gap-4 mb-10">
         {pains.map((p, i) => (
