@@ -19,21 +19,21 @@ export function SlideShell({
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="mb-8"
+          className="mb-4 sm:mb-6"
         >
           {eyebrow && (
-            <div className="mb-3 inline-flex items-center gap-2 rounded-full glass px-3 py-1 text-[10px] uppercase tracking-[0.3em] text-neon">
+            <div className="mb-2 sm:mb-3 inline-flex items-center gap-2 rounded-full glass px-3 py-1 text-[10px] uppercase tracking-[0.3em] text-neon">
               <span className="h-1.5 w-1.5 rounded-full bg-neon shadow-[0_0_10px_var(--neon)]" />
               {eyebrow}
             </div>
           )}
           {title && (
-            <h2 className="text-3xl sm:text-5xl font-bold tracking-tight text-gradient">
+            <h2 className="text-2xl sm:text-4xl lg:text-[2.75rem] font-bold tracking-tight text-gradient leading-tight">
               {title}
             </h2>
           )}
           {subtitle && (
-            <p className="mt-3 max-w-2xl text-sm sm:text-base text-muted-foreground">
+            <p className="mt-2 sm:mt-3 max-w-3xl text-xs sm:text-sm text-muted-foreground leading-relaxed">
               {subtitle}
             </p>
           )}
@@ -65,13 +65,17 @@ export function Stat({
       initial={{ opacity: 0, y: 18 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.7, delay }}
-      className="glass-strong rounded-2xl p-6 relative overflow-hidden group"
+      className="glass-strong rounded-2xl p-4 sm:p-5 relative overflow-hidden group"
     >
       <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-primary/10 to-transparent opacity-0 group-hover:opacity-100 transition" />
-      <div className={`text-3xl sm:text-4xl font-bold font-mono tracking-tight ${colorMap[accent]}`}>
+      <div
+        className={`text-2xl sm:text-3xl lg:text-4xl font-bold font-mono tracking-tight ${colorMap[accent]}`}
+      >
         {value}
       </div>
-      <div className="mt-2 text-xs uppercase tracking-widest text-muted-foreground">{label}</div>
+      <div className="mt-1.5 text-[10px] sm:text-xs uppercase tracking-widest text-muted-foreground leading-snug">
+        {label}
+      </div>
     </motion.div>
   );
 }

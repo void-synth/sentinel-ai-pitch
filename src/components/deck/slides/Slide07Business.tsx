@@ -107,11 +107,11 @@ export function Slide07Business() {
             Open the deployed UI at{" "}
             <a
               className="text-neon hover:underline"
-              href="https://titan-squad.vercel.app/"
+              href="https://squad-titan.vercel.app/"
               target="_blank"
               rel="noopener noreferrer"
             >
-              titan-squad.vercel.app
+              squad-titan.vercel.app
             </a>{" "}
             — demo login is intentional scope; production would use IdP + RBAC.
           </motion.p>

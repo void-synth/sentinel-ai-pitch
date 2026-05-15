@@ -7,10 +7,13 @@ export function Deck() {
   const [index, setIndex] = useState(0);
   const [dir, setDir] = useState(1);
 
-  const go = useCallback((next: number) => {
-    setDir(next > index ? 1 : -1);
-    setIndex(Math.max(0, Math.min(slides.length - 1, next)));
-  }, [index]);
+  const go = useCallback(
+    (next: number) => {
+      setDir(next > index ? 1 : -1);
+      setIndex(Math.max(0, Math.min(slides.length - 1, next)));
+    },
+    [index],
+  );
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
@@ -63,9 +66,9 @@ export function Deck() {
             animate={{ opacity: 1, x: 0, filter: "blur(0px)" }}
             exit={{ opacity: 0, x: -dir * 60, filter: "blur(8px)" }}
             transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-            className="absolute inset-0 flex items-center justify-center px-4 sm:px-12 pt-20 pb-24 overflow-y-auto scrollbar-hide"
+            className="absolute inset-0 flex min-h-0 items-start justify-center px-3 sm:px-8 lg:px-12 pt-14 sm:pt-20 pb-28 sm:pb-32 overflow-y-auto overflow-x-hidden scrollbar-hide"
           >
-            <div className="w-full max-w-7xl">
+            <div className="w-full max-w-7xl shrink-0 py-3 sm:py-5">
               <Slide />
             </div>
           </motion.div>

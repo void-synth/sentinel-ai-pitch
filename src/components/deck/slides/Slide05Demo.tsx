@@ -8,7 +8,7 @@ const nodes = [
   { id: "RD", label: "Redis\nqueue", x: 280, y: 260 },
   { id: "WK", label: "Worker\nrisk engine", x: 420, y: 180 },
   { id: "SO", label: "Socket.IO\nemit", x: 560, y: 180 },
-  { id: "UI", label: "Vite + React\nops UI", x: 700, y: 180 },
+  { id: "UI", label: "Next.js\nops UI", x: 700, y: 180 },
 ];
 
 const edges = [
@@ -23,19 +23,49 @@ const edges = [
 
 const pos = Object.fromEntries(nodes.map((n) => [n.id, n]));
 
+const mobileFlow = [
+  "Squad-style webhook",
+  "FastAPI verify + persist",
+  "PostgreSQL + Redis queue",
+  "Worker (risk engine)",
+  "Socket.IO emit",
+  "Next.js ops UI",
+];
+
 export function Slide05Demo() {
   return (
     <SlideShell
       eyebrow="Architecture"
-      title="One pipeline — demo, load test, and Q&A use the same path."
-      subtitle="Webhook → Postgres → Redis queue → background worker → composite scorer → Socket.IO → analyst dashboard. Optional Squad proxy / gated payout exists for completeness — not the hero story."
+      title="One pipeline — judges, load tests, and the UI share the same spine."
+      subtitle="One path: webhook → Postgres + Redis queue → worker → Socket.IO → Next.js UI. Same path under load tests. Optional Squad client calls stay env-gated."
     >
+      <ol className="md:hidden space-y-2 mb-1">
+        {mobileFlow.map((label, i) => (
+          <motion.li
+            key={label}
+            initial={{ opacity: 0, x: -6 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: 0.04 + i * 0.04 }}
+            className="flex items-center gap-3 rounded-lg border border-border/70 bg-card/25 px-3 py-2 text-xs font-mono text-muted-foreground"
+          >
+            <span className="text-[10px] font-bold text-neon w-5">
+              {String(i + 1).padStart(2, "0")}
+            </span>
+            <span className="text-foreground/90">{label}</span>
+          </motion.li>
+        ))}
+      </ol>
+
       <motion.div
         initial={{ opacity: 0, y: 12 }}
         animate={{ opacity: 1, y: 0 }}
-        className="glass-strong rounded-2xl p-6 md:p-8 overflow-x-auto"
+        className="hidden md:block glass-strong rounded-xl md:rounded-2xl p-3 sm:p-6 md:p-8 overflow-x-auto border border-border/70"
       >
-        <svg viewBox="0 0 820 340" className="w-full min-w-[640px] h-[280px] md:h-[320px]">
+        <svg
+          viewBox="0 0 820 320"
+          className="w-full min-w-[520px] lg:min-w-0 h-[240px] md:h-[280px] lg:h-[300px]"
+          preserveAspectRatio="xMidYMid meet"
+        >
           <defs>
             <marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
               <path d="M0,0 L8,4 L0,8 Z" fill="oklch(0.55 0.12 250)" />
@@ -97,8 +127,9 @@ export function Slide05Demo() {
           ))}
         </svg>
       </motion.div>
-      <p className="mt-4 text-xs text-muted-foreground font-mono text-center">
-        ASGI combines FastAPI + python-socketio — single process story for the hackathon demo.
+      <p className="mt-2 md:mt-4 text-[11px] sm:text-xs text-muted-foreground font-mono text-center px-1">
+        ASGI mounts FastAPI and python-socketio together — one process narrative for demos and local
+        dev (see backend/main.py in the repo).
       </p>
     </SlideShell>
   );

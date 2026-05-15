@@ -3,7 +3,7 @@ import { Github, ExternalLink, MessageCircle } from "lucide-react";
 import { SlideShell } from "../SlideShell";
 
 const REPO = "https://github.com/void-synth/squad";
-const LIVE = "https://titan-squad.vercel.app/";
+const LIVE = "https://squad-titan.vercel.app/";
 
 export function Slide10Roadmap() {
   return (
@@ -25,6 +25,21 @@ export function Slide10Roadmap() {
         </motion.div>
 
         <div className="space-y-4">
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.05 }}
+            className="glass-strong rounded-xl p-4 border border-border/60"
+          >
+            <div className="text-[10px] font-mono uppercase tracking-widest text-neon mb-2">
+              Next on the product
+            </div>
+            <ul className="text-xs sm:text-sm text-muted-foreground space-y-1.5 leading-relaxed">
+              <li>RBAC + real IdP · audit export · labeled replay for scorer eval</li>
+              <li>Richer case management (assignments, SLAs, notes, escalation paths)</li>
+            </ul>
+          </motion.div>
+
           <motion.div
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
@@ -92,7 +107,7 @@ export function Slide10Roadmap() {
                   Live product
                 </div>
                 <div className="text-sm font-semibold group-hover:text-neon transition">
-                  titan-squad.vercel.app
+                  squad-titan.vercel.app
                 </div>
               </div>
             </motion.a>

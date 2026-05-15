@@ -9,8 +9,11 @@ import { nitro } from "nitro/vite";
 
 // Vercel runs `vite build` with VERCEL=1. TanStack Start on Vercel expects Nitro output, not
 // Cloudflare Workers (see https://vercel.com/docs/frameworks/full-stack/tanstack-start ).
-// Local / Cloudflare builds keep the default Cloudflare plugin from Lovable's config.
-const forVercel = process.env.VERCEL === "1";
+// Default local `npm run build` to the same Nitro path so we do not require `src/server.ts`.
+// Opt into Cloudflare Workers only when that entry exists and you set CLOUDFLARE_WORKER=1.
+const forVercel =
+  process.env.VERCEL === "1" ||
+  (process.env.CLOUDFLARE_WORKER !== "1" && process.env.CF_PAGES !== "1");
 
 // Configure TanStack Start for Vercel deployment
 export default defineConfig({

@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { ArrowUpRight, ExternalLink, Github } from "lucide-react";
 
 const REPO = "https://github.com/void-synth/squad";
-const LIVE = "https://titan-squad.vercel.app/";
+const LIVE = "https://squad-titan.vercel.app/";
 
 export function Slide11Closing() {
   return (
